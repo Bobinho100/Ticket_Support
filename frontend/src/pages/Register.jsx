@@ -5,6 +5,7 @@ import { FaUser } from "react-icons/fa"
 import {toast} from 'react-toastify'
 import {useSelector, useDispatch} from 'react-redux'
 import { register, reset } from "../features/auth/authSlice"
+import Spinner from "../components/Spinner"
 
 const Register = () => {
 
@@ -33,7 +34,7 @@ const Register = () => {
             navigate('/')
 
         }
-        dispatch(reset)
+        dispatch(reset())
 
     }, [isError, isSuccess, user, message, navigate, dispatch])
 
@@ -61,6 +62,10 @@ const Register = () => {
             dispatch(register(userData))
         }
 
+    }
+
+    if (isLoading){
+        return <Spinner />
     }
   return (
     <>
